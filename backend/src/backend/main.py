@@ -35,6 +35,16 @@ app.add_middleware(
 )
 
 
+@app.middleware("http")
+async def add_session_id_to_request(request: Request, call_next):
+    session_id = request.headers.get("X-Session-ID") or request.cookies.get(
+        "session_id"
+    )
+    request.state.session_id = session_id
+    response = await call_next(request)
+    return response
+
+
 ## Question
 @app.post("/questions/", response_model=schema.QuestionInfo)
 def create_question(
