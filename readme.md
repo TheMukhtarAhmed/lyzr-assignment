@@ -50,3 +50,22 @@ You can explore all available endpoints, request bodies, and responses using the
 ### WebSocket Connection
 
 The primary WebSocket endpoint for real-time poll updates: (wss://api.mukhtarhmed.com/ws/polls)
+
+
+## 🕒 Note on Submission Timing
+
+I wanted to provide an update regarding the submission timeline. I have requested a short extension via email, and the **frontend portion of the project will be fully ready by tomorrow**.
+
+I sincerely apologize for this slight delay. The reason for the postponement is not due to the project's difficulty, but rather an unexpected and significant opportunity that arose.
+
+---
+
+## 🌟 Reason for the Short Delay
+
+Last night (October 26th), I received an unexpected opportunity to collaborate with **one of the top 5 YouTubers in India**. They decided to integrate and use my existing college project, **SmartLnks**, for a major campaign.
+
+It was a truly surreal and massive moment for me. Seeing a tool I built being trusted to handle significant traffic, including from accounts with **over 60–70 million Instagram followers**, was an incredible experience. I spent the entire night focused on **scaling and optimizing SmartLnks** to ensure stability and smooth performance under high load. I am thrilled to report that it performed better than expected.
+
+I am very sorry for the short delay, but I promise to deliver the remaining frontend part of this project with the same level of dedication and attention to detail.
+
+Thank you so much for your understanding.
