@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+@config "../tailwind.config.js"
+
