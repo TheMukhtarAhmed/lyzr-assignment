@@ -12,7 +12,7 @@ class Question(Base):
     question_text = Column(String(200))
     description = Column(Text, nullable=True)
     pub_date = Column(DateTime, default=datetime.now())
-    start_time = Column(DateTime, nullable=False)
+    start_time = Column(DateTime, nullable=False, default=datetime.now())
     end_time = Column(DateTime, nullable=True)
     allow_multiple = Column(Boolean, default=False)
     visibility = Column(String(20), default="public")  # public, private, unlisted
