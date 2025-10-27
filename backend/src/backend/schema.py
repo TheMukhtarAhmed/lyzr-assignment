@@ -36,7 +36,7 @@ class QuestionList(BaseModel):
     question_text: str
     description: Optional[str]
     status: str
-    pub_date: datetime
+    pub_date: Optional[datetime]
     start_time: datetime
     end_time: Optional[datetime]
     allow_multiple: bool

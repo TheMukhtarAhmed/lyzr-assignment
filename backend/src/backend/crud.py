@@ -10,6 +10,12 @@ from . import schema
 
 
 def create_question(db: Session, question: schema.QuestionCreate, session_id: str):
+    if not question.choices or len(question.choices) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="At least one choice is required for the question.",
+        )
+
     obj = Question(
         question_text=question.question_text,
         description=question.description,
@@ -75,7 +81,6 @@ def edit_question(
     obj.end_time = question.end_time
     obj.allow_multiple = question.allow_multiple
     obj.visibility = question.visibility
-    obj.pub_date = question.pub_date
 
     if question.choices:
         existing_choices = {choice.id: choice for choice in obj.choices}
@@ -201,4 +206,11 @@ def toggle_like(question_id: int, session_id: str, db: Session):
     db.commit()
     db.refresh(question)
 
-    return {"question": question, "action": action, "likes_count": question.likes_count}
+    has_liked = session_manager.has_user_liked(question_id, session_id)
+
+    return {
+        "question": question,
+        "action": action,
+        "likes_count": question.likes_count,
+        "has_liked": has_liked,
+    }

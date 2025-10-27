@@ -121,6 +121,7 @@ async def toggle_like(
             "event": "like_toggle",
             "question_id": question_id,
             "likes_count": result["likes_count"],
+            "has_liked": result["has_liked"],
             "action": result["action"],
         }
     )
