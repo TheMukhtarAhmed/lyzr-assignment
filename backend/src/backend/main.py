@@ -72,7 +72,7 @@ def get_question(qid: int, request: Request, db: Session = Depends(get_db)):
 @app.put("/questions/{qid}", response_model=schema.QuestionInfo)
 def edit_question(
     qid: int,
-    question: schema.QuestionCreate,
+    question: schema.QuestionUpdate,
     request: Request,
     db: Session = Depends(get_db),
 ):

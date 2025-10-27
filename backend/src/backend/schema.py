@@ -12,6 +12,9 @@ class ChoiceBase(BaseModel):
 class ChoiceCreate(ChoiceBase):
 	pass
 
+class ChoiceUpdate(ChoiceBase):
+    id: int
+
 class ChoiceList(ChoiceBase):
 	id: int
 
@@ -30,13 +33,16 @@ class QuestionBase(BaseModel):
 
 class QuestionCreate(QuestionBase):
 	choices: Optional[List[ChoiceCreate]] = None
+ 
+class QuestionUpdate(QuestionBase):
+    choices: Optional[List[ChoiceUpdate]] = None
 
 class QuestionList(BaseModel):
     id: int
     question_text: str
     description: Optional[str]
     status: str
-    pub_date: Optional[datetime]
+    pub_date: datetime
     start_time: datetime
     end_time: Optional[datetime]
     allow_multiple: bool
