@@ -1,0 +1,25 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Mukhtar Ahmed",email = "itssmukhtar@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi (>=0.120.0,<0.121.0)",
+    "uvicorn[standard] (>=0.38.0,<0.39.0)",
+    "sqlalchemy (>=2.0.44,<3.0.0)",
+    "psycopg2-binary (>=2.9.11,<3.0.0)",
+    "alembic (>=1.17.0,<2.0.0)",
+    "redis (>=7.0.0,<8.0.0)",
+    "websockets (>=15.0.1,<16.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "backend", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,70 @@
+services:
+  backend:
+    container_name: backend-app
+    build:
+      context: "."
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/app
+      # - alembic_data:/src/alembic/versions
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      REDIS_URL: ${REDIS_URL}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+  postgres:
+    container_name: backend-postgres
+    image: postgres:16.4-alpine
+    restart: no
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    container_name: backend-redis
+    image: redis:alpine
+    restart: no
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_CONFIG_WTF_CSRF_CHECK_DEFAULT: "False"
+      PGADMIN_CONFIG_WTF_CSRF_ENABLED: "False"
+    ports:
+      - "8081:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - "5540:5540"
+    volumes:
+      - redisinsight_data:/data
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+  redis_data:
+  redisinsight_data:
+  # alembic_data:

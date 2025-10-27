@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>WebSocket Test</h2>
+    <button onclick="connect()">Connect</button>
+    <button onclick="send()">Send Message</button>
+    <button onclick="disconnect()">Disconnect</button>
+    <div id="output"></div>
+
+    <script>
+      let ws = null;
+
+      function log(msg) {
+        document.getElementById("output").innerHTML += msg + "<br>";
+      }
+
+      function connect() {
+        // Use the same host as your backend
+        const host = "localhost";
+        const port = "8000";
+        const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+
+        const wsUrl = `${protocol}//${host}:${port}/ws/polls`;
+        log(`Connecting to: ${wsUrl}`);
+
+        ws = new WebSocket(wsUrl);
+
+        ws.onopen = () => log("✅ Connected to WebSocket");
+        ws.onmessage = (event) => log(`📨 Received: ${event.data}`);
+        ws.onclose = () => log("❌ Disconnected from WebSocket");
+        ws.onerror = (error) => log(`💥 Error: ${error}`);
+      }
+
+      function send() {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ test: "hello", number: 123 }));
+          log("📤 Sent message");
+        } else {
+          log("❌ Not connected");
+        }
+      }
+
+      function disconnect() {
+        if (ws) {
+          ws.close();
+          ws = null;
+        }
+      }
+
+      // Auto-connect
+      connect();
+    </script>
+  </body>
+</html>
