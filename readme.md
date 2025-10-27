@@ -31,7 +31,7 @@ A full-stack, real-time polling platform built with **FastAPI**, **Next.js**, an
 | **Frontend** | **Next.js**      | React framework for server-side rendering and static generation. |
 |              | **TypeScript**   | Adds static type-checking for enhanced developer experience.     |
 |              | **Tailwind CSS** | Utility-first CSS framework for rapid UI development.            |
-|              | **shadcn/ui**    | Pre-built, customizable UI components.                           |
+|              | **heroui**    | Pre-built, customizable UI components.                           |
 
 ---
 
@@ -41,11 +41,11 @@ The QuickPoll API is deployed live and its documentation is accessible via Swagg
 
 ### Base URL (Live Deployment)
 
-https://api.mukhtarhmed.com
+https://api.mukhtarahmed.com
 
 ### Swagger Documentation
 
-You can explore all available endpoints, request bodies, and responses using the interactive Swagger UI: https://api.mukhtarhmed.com/docs
+You can explore all available endpoints, request bodies, and responses using the interactive Swagger UI: https://api.mukhtarahmed.com/docs
 
 ### WebSocket Connection
 
