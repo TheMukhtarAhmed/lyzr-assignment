@@ -23,7 +23,6 @@ class ChoiceList(ChoiceBase):
 class QuestionBase(BaseModel):
 	question_text: str
 	description: Optional[str] = None
-	pub_date: datetime
 	start_time: Optional[datetime] = None
 	end_time: Optional[datetime] = None
 	allow_multiple: bool = False
@@ -37,6 +36,7 @@ class QuestionList(BaseModel):
     question_text: str
     description: Optional[str]
     status: str
+    pub_date: datetime
     start_time: datetime
     end_time: Optional[datetime]
     allow_multiple: bool
