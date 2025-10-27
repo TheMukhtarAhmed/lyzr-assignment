@@ -10,12 +10,14 @@ from fastapi import (
     WebSocketDisconnect,
 )
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
 from sqlalchemy.orm import Session
 
 from . import crud
 from .database import Base, SessionLocal, engine, get_db
 from dotenv import load_dotenv
+
 load_dotenv()
 
 Base.metadata.create_all(bind=engine)
@@ -23,6 +25,14 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 manager = ConnectionManager()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "https://mukhtarahmed.com"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 ## Question
