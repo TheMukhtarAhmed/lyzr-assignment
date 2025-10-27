@@ -13,7 +13,6 @@ def create_question(db: Session, question: schema.QuestionCreate, session_id: st
     obj = Question(
         question_text=question.question_text,
         description=question.description,
-        pub_date=question.pub_date,
         start_time=question.start_time,
         end_time=question.end_time,
         allow_multiple=question.allow_multiple,
