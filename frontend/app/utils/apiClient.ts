@@ -13,7 +13,7 @@ export async function apiRequest(
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    // "X-Session-ID": sessionId,
+    "X-Session-ID": sessionId,
   };
 
   const response = await fetch(`https://api.mukhtarahmed.com${endpoint}`, {
