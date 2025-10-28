@@ -1,5 +1,6 @@
 from datetime import datetime
 from fastapi import HTTPException, status
+from sqlalchemy import desc
 from sqlalchemy.orm import Session
 
 from .session_manager import session_manager
@@ -40,7 +41,7 @@ def create_question(db: Session, question: schema.QuestionCreate, session_id: st
 
 
 def get_all_questions(db: Session, session_id: str):
-    questions = db.query(Question).all()
+    questions = db.query(Question).order_by(desc(Question.pub_date)).all()
 
     for question in questions:
         question.is_owner = question.owner_session_id == session_id
@@ -170,11 +171,7 @@ def toggle_vote(choice_id: int, session_id: str, db: Session):
 
     all_choices = db.query(Choice).filter(Choice.question_id == poll.id).all()
     choices_data = [
-        {
-            "id": c.id,
-            "votes": c.votes,
-        }
-        for c in all_choices
+        {"id": c.id, "votes": c.votes, "text": c.choice_text} for c in all_choices
     ]
 
     return {
