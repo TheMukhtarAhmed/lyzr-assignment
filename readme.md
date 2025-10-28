@@ -35,37 +35,37 @@ A full-stack, real-time polling platform built with **FastAPI**, **Next.js**, an
 
 ---
 
-## 📋 API Documentation
+## 🌐 Live Deployment & Access
 
-The QuickPoll API is deployed live and its documentation is accessible via Swagger UI.
+QuickPoll is deployed live and fully accessible via the following links:
 
-### Base URL (Live Deployment)
+### 🗳️ Live Application (Frontend)
 
-https://api.mukhtarahmed.com
+Access the full, interactive polling platform here:
 
-### Swagger Documentation
+> **https://frontend.mukhtarahmed.com**
 
-You can explore all available endpoints, request bodies, and responses using the interactive Swagger UI: https://api.mukhtarahmed.com/docs
+### 📋 API Documentation (Backend)
 
-### WebSocket Connection
+The API is deployed live, and its documentation is accessible via Swagger UI.
 
-The primary WebSocket endpoint for real-time poll updates: (wss://api.mukhtarhmed.com/ws/polls)
-
-
-## 🕒 Note on Submission Timing
-
-I wanted to provide an update regarding the submission timeline. I have requested a short extension via email, and the **frontend portion of the project will be fully ready by tomorrow**.
-
-I sincerely apologize for this slight delay. The reason for the postponement is not due to the project's difficulty, but rather an unexpected and significant opportunity that arose.
+* **Base URL (API)**: `https://api.mukhtarahmed.com`
+* **Swagger Documentation**: [https://api.mukhtarahmed.com/docs](https://api.mukhtarahmed.com/docs)
+* **WebSocket Connection**: `wss://api.mukhtarhmed.com/ws/polls`
 
 ---
 
-## 🌟 Reason for the Short Delay
+### 🕒 Note on Submission Timing
 
-Last night (October 26th), I received an unexpected opportunity to collaborate with **one of the top 5 YouTubers in India**. They decided to integrate and use my existing college project, **SmartLnks**, for a major campaign.
+The **frontend portion of the project is now fully complete and live**. I wanted to provide an update on the minor delay leading up to this final delivery.
 
-It was a truly surreal and massive moment for me. Seeing a tool I built being trusted to handle significant traffic, including from accounts with **over 60–70 million Instagram followers**, was an incredible experience. I spent the entire night focused on **scaling and optimizing SmartLnks** to ensure stability and smooth performance under high load. I am thrilled to report that it performed better than expected.
+### 🌟 Context for the Delay
 
-I am very sorry for the short delay, but I promise to deliver the remaining frontend part of this project with the same level of dedication and attention to detail.
+I sincerely apologize for the slight delay in the initial timeline. The reason was not due to the project's difficulty, but rather an unexpected and significant opportunity that arose:
+
+* Last night (October 26th), I received an unexpected opportunity to collaborate with **one of the top 5 YouTubers in India**.
+* They decided to integrate and use my existing college project, **SmartLnks**, for a major campaign.
+* It was a surreal moment—seeing a tool I built trusted to handle significant traffic, including from accounts with over **60–70 million Instagram followers**.
+* I spent the entire night focused on **scaling and optimizing SmartLnks** to ensure stability and smooth performance under high load, and it thankfully performed better than expected.
 
 Thank you so much for your understanding.
