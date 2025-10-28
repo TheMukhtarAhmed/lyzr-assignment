@@ -6,10 +6,11 @@ import {
   getLocalTimeZone,
   now,
   parseDate,
-  parseDateTime,
   today,
   ZonedDateTime,
 } from "@internationalized/date";
+import { parseISO } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 import React from "react";
 import { Control, Controller, UseFormTrigger } from "react-hook-form";
 
@@ -53,13 +54,25 @@ const DatePickerField: React.FC<DatePickerProps> = ({
   const getDateValue = (value: any): DateValue | null => {
     if (!value || value === "") return null;
 
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
     if (typeof value === "object" && "year" in value) {
       return value;
     }
 
     if (typeof value === "string") {
       try {
-        return parseDateTime(value);
+        const utcDate = parseISO(value.endsWith("Z") ? value : value + "Z");
+        const localDate = toZonedTime(utcDate, userTimeZone);
+
+        const year = localDate.getFullYear();
+        const month = localDate.getMonth() + 1;
+        const day = localDate.getDate();
+        const hour = localDate.getHours();
+        const minute = localDate.getMinutes();
+        const second = localDate.getSeconds();
+
+        return new CalendarDateTime(year, month, day, hour, minute, second);
       } catch (e) {
         try {
           return parseDate(value);

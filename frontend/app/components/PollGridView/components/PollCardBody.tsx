@@ -5,6 +5,9 @@ import { Center } from "../../Center";
 import CustomLinearPercentIndicator from "../../CustomLinearPercentIndicator";
 import { Poll } from "@/app/types/Poll";
 import { apiRequest } from "@/app/utils/apiClient";
+import Countdown from "react-countdown";
+import { parseISO } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 
 const PollCardBody = ({ poll }: { poll: Poll }) => {
   const totalVotes = poll.choices.reduce((sum, c) => sum + c.votes, 0);
@@ -23,6 +26,39 @@ const PollCardBody = ({ poll }: { poll: Poll }) => {
 
   const sortedChoices = [...poll.choices].sort((a, b) => b.votes - a.votes);
 
+  const renderCountdown = () => {
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const now = new Date();
+    if (poll.status === "upcoming" && poll.start_time) {
+      const utcDate = parseISO(poll.start_time + "Z");
+      const localDate = toZonedTime(utcDate, userTimeZone);
+
+      if (localDate > now) {
+        return (
+          <div className="mt-6 text-sm text-gray-600">
+            Starts in: <Countdown date={localDate.getTime()} />
+          </div>
+        );
+      }
+    }
+
+    if (poll.status === "active" && poll.end_time) {
+      const utcDate = parseISO(poll.end_time + "Z");
+      const localDate = toZonedTime(utcDate, userTimeZone);
+
+      if (localDate > now) {
+        return (
+          <div className="mt-6 text-sm text-gray-600">
+            Ends in: <Countdown date={localDate.getTime()} />
+          </div>
+        );
+      }
+    }
+
+    return null;
+  };
+
   return (
     <CardBody className="flex flex-col gap-3">
       {sortedChoices?.map((choice) => {
@@ -37,7 +73,7 @@ const PollCardBody = ({ poll }: { poll: Poll }) => {
                 radius="full"
                 isSelected={poll.user_votes.includes(choice.id)}
                 onChange={() => handleVote(choice.id)}
-                isDisabled={isVoting}
+                isDisabled={isVoting || poll.status != "active"}
               >
                 {choice.choice_text}
               </Checkbox>
@@ -51,6 +87,8 @@ const PollCardBody = ({ poll }: { poll: Poll }) => {
           </div>
         );
       })}
+
+      {renderCountdown()}
     </CardBody>
   );
 };

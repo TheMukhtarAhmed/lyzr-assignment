@@ -26,7 +26,7 @@ const PollGridView = () => {
 
   if (!polls.length) {
     return (
-      <div className="mt-24 text-left text-gray-500">No polls available.</div>
+      <div className="mt-24 text-center text-gray-500">No polls available.</div>
     );
   }
 

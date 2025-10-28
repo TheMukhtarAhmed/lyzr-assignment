@@ -91,7 +91,7 @@ const PollCardFooter = ({ poll }: { poll: Poll }) => {
             <Button
               color="danger"
               variant="flat"
-              isIconOnly
+              isIconOnly={!isDeleting}
               isDisabled={isDeleting}
             >
               {isDeleting ? "Deleting..." : <GoTrash />}

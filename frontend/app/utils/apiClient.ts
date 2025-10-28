@@ -1,14 +1,20 @@
+import { v4 as uuidv4 } from "uuid";
+
 export async function apiRequest(
   endpoint: string,
   method: string = "GET",
   data?: any
 ) {
-  const sessionId = localStorage.getItem("session_id");
+  let sessionId = sessionStorage.getItem("session_id");
+  if (!sessionId) {
+    sessionId = uuidv4();
+    sessionStorage.setItem("session_id", sessionId);
+  }
+
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
+    // "X-Session-ID": sessionId,
   };
-
-  if (sessionId) headers["X-Session-ID"] = sessionId;
 
   const response = await fetch(`https://api.mukhtarahmed.com${endpoint}`, {
     method,
