@@ -66,7 +66,6 @@ const PollForm: React.FC<PollFormProps> = ({
           label="Allow Multiple Selections"
           placeholder="Select an option"
           rules={validationRules.allowMultiple}
-          defaultValue={initialData?.allow_multiple ?? false}
           items={[
             { key: true, label: "Yes" },
             { key: false, label: "No" },
@@ -75,7 +74,7 @@ const PollForm: React.FC<PollFormProps> = ({
       </div>
       <div>
         <DatePickerField
-          name="start_date"
+          name="start_time"
           control={control}
           errors={errors}
           showTime
@@ -84,7 +83,7 @@ const PollForm: React.FC<PollFormProps> = ({
       </div>
       <div>
         <DatePickerField
-          name="end_date"
+          name="end_time"
           control={control}
           errors={errors}
           showTime

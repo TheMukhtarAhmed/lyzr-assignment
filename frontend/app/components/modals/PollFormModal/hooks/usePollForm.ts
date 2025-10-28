@@ -9,6 +9,19 @@ import { apiRequest } from "@/app/utils/apiClient";
 import { Poll } from "@/app/types/Poll";
 import { usePollStore } from "@/app/stores/poll";
 
+const serializeDate = (d: any) => {
+  if (!d) return null;
+  return new Date(
+    d.year,
+    d.month - 1,
+    d.day,
+    d.hour ?? 0,
+    d.minute ?? 0,
+    d.second ?? 0,
+    d.millisecond ?? 0
+  ).toISOString();
+};
+
 interface UsePollFormProps {
   initialData?: Poll;
   onClose: () => void;
@@ -38,8 +51,20 @@ export function usePollForm({
     try {
       setIsSubmitting(true);
 
+      const payload = {
+        ...data,
+        allow_multiple:
+          data.allow_multiple === "true" || data.allow_multiple === true,
+        start_time: serializeDate(data.start_time),
+        end_time: serializeDate(data.end_time),
+      };
+
       const url = initialData ? `/questions/${initialData.id}` : "/questions/";
-      const result = await apiRequest(url, initialData ? "PUT" : "POST", data);
+      const result = await apiRequest(
+        url,
+        initialData ? "PUT" : "POST",
+        payload
+      );
 
       if (initialData) {
         updatePoll(result);

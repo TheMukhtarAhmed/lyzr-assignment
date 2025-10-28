@@ -53,7 +53,6 @@ const DatePickerField: React.FC<DatePickerProps> = ({
   const getDateValue = (value: any): DateValue | null => {
     if (!value || value === "") return null;
 
-    // If it's already a DateValue object
     if (typeof value === "object" && "year" in value) {
       return value;
     }

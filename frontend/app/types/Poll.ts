@@ -11,7 +11,7 @@ export interface Poll {
   likes_count: number;
   total_votes: number;
   is_owner: boolean;
-  user_votes: any[];
+  user_votes: number[];
   has_liked: boolean;
   choices: Choice[];
 }
